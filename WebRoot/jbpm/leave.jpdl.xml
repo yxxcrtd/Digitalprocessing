@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="leave" xmlns="http://jbpm.org/4.4/jpdl">
+	<start g="198,15,48,48" name="start1">
+		<transition to="申请" />
+	</start>
+	<task assignee="张三" form="leave.jsp" g="175,94,92,52" name="申请">
+		<transition to="exclusive1" />
+	</task>
+	<decision g="196,259,48,48" name="exclusive1">
+		<transition g="344,283:" to="老板审批">
+			<condition expr="#{day &gt;5}" />
+		</transition>
+		<transition to="end1">
+			<condition expr="#{day &gt;3}" />
+		</transition>
+
+	</decision>
+	<task assignee="张三" form="/pages/leave/form/boss" g="299,305,92,52" name="老板审批">
+		<transition g="342,378:" to="end1" />
+	</task>
+	<end g="196,354,48,48" name="end1" />
+</process>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-query>
+	<dao id="cn.digitalpublishing.dao.OcrFilesDao">
+		<query>
+			<id>getPagingList</id>
+			<method>getPagingList</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+				<param name="sort" type="java.lang.String"></param>
+			</params>
+			<properties>id,fileName,receiveFilePath,originalFilePath</properties>
+			<fields>a.id,a.fileName,a.receiveFilePath,originalFilePath</fields>
+			<hql>from OcrFiles a</hql>
+			<conditions>
+				<condition id="fileName" describe="文件名">
+					<params type="param">
+						<param name="fileName" type="java.lang.String" />
+					</params>
+					<hql>a.fileName like ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.OcrFiles</className>
+		</query>
+		<query>
+			<id>getCount</id>
+			<method>getCount</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+			</params>
+			<properties>id</properties>
+			<fields>cast(count(*) as string)</fields>
+			<hql>from OcrFiles a</hql>
+			<conditions>
+				<condition id="fileName" describe="文件名">
+					<params type="param">
+						<param name="fileName" type="java.lang.String" />
+					</params>
+					<hql>a.fileName = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.OcrFiles</className>
+		</query>
+	</dao>
+</web-query>

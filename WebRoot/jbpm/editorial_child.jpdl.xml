@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="editorial_child" xmlns="http://jbpm.org/4.4/jpdl" key="editorial_child">
+   <start g="402,44,48,48" name="start1">
+      <transition to="签合同"/>
+   </start>
+   <task candidate-users="#{user0}" form="/pages/project/form/edit" g="382,160,92,52" name="签合同">
+      <transition to="领取补贴"/>
+   </task>
+   <task candidate-users="#{user0}" form="/pages/project/form/edit" g="390,314,92,52" name="领取补贴">
+      <transition to="end1"/>
+   </task>
+   <end g="438,563,48,48" name="end1"/>
+</process>

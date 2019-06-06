@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-query>
+	<dao id="cn.digitalpublishing.dao.TemplateMappingDao">
+		<query>
+			<id>getCount</id>
+			<method>getCount</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+			</params>
+			<properties>id</properties>
+			<fields>cast(count(*) as string)</fields>
+			<hql>from TemplateMapping a</hql>
+			<conditions>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.TemplateMapping</className>
+		</query>
+		
+		<query>
+			<id>getList</id>
+			<method>getList</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+				<param name="sort" type="java.lang.String"></param>
+			</params>
+			<properties>id,resourceid,templateid,xmlNodeid,templateNodeid</properties>
+			<fields>a.id,a.resourceid,a.templateid,a.xmlNodeid,a.templateNodeid</fields>
+			<hql>from TemplateMapping a</hql>
+			<conditions>
+				<condition id="resourceid" describe="数据模板id">
+					<params type="param">
+						<param name="resourceid" type="java.lang.String" />
+					</params>
+					<hql>a.resourceid = ?</hql>
+				</condition>
+				<condition id="templateid" describe="标准模板id">
+					<params type="param">
+						<param name="templateid" type="java.lang.String" />
+					</params>
+					<hql>a.templateid = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.TemplateMapping</className>
+		</query>
+		
+	</dao>
+</web-query>

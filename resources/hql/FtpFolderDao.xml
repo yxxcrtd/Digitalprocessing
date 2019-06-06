@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-query>
+	<dao id="cn.digitalpublishing.dao.FtpFolderDao">
+		<query>
+			<id>getPagingList</id>
+			<method>getPagingList</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+				<param name="sort" type="java.lang.String"></param>
+			</params>
+			<properties>id,folderName,url,depict,ftpConfig</properties>
+			<fields>a.id,a.folderName,a.url,a.depict,a.ftpConfig</fields>
+			<hql>from FtpFolder a</hql>
+			<conditions>
+				<condition id="folderName" describe="Ftp文件夹">
+					<params type="param">
+						<param name="folderName" type="java.lang.String" />
+					</params>
+					<hql>a.folderName = ?</hql>
+				</condition>
+				<condition id="ftpName" describe="Ftp服务器">
+					<params type="param">
+						<param name="ftpName" type="java.lang.String" />
+					</params>
+					<hql>a.ftpConfig.ftpName = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.FtpFolder</className>
+		</query>
+		
+		<query>
+			<id>getCount</id>
+			<method>getCount</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+			</params>
+			<properties>id</properties>
+			<fields>cast(count(*) as string)</fields>
+			<hql>from FtpFolder a</hql>
+			<conditions>
+				<condition id="folderName" describe="Ftp文件夹">
+					<params type="param">
+						<param name="folderName" type="java.lang.String" />
+					</params>
+					<hql>a.folderName = ?</hql>
+				</condition>
+				<condition id="ftpName" describe="Ftp服务器">
+					<params type="param">
+						<param name="ftpName" type="java.lang.String" />
+					</params>
+					<hql>a.ftpConfig.ftpName = ?</hql>
+				</condition>
+				
+				<condition id="delflag" describe="删除FtpConfig先查询FtpFolder的个数">
+					<params type="param">
+						<param name="delflag" type="java.lang.String" />
+					</params>
+					<hql>a.ftpConfig.id = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.FtpFolder</className>
+		</query>
+	</dao>
+</web-query>

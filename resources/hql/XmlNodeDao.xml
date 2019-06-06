@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-query>
+	<dao id="cn.digitalpublishing.dao.XmlNodeDao">
+		<query>
+			<id>getPagingList</id>
+			<method>getPagingList</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+				<param name="sort" type="java.lang.String"></param>
+			</params>
+			<properties>id,nodePath,nodeValue,updateTime,nodeCode,nodeKey</properties>
+			<fields>a.id,a.nodePath,a.nodeValue,a.updateTime,a.nodeCode,a.nodeKey</fields>
+			<hql>from XmlNode a</hql>
+			<conditions>
+				<condition id="id" describe="Id">
+					<params type="param">
+						<param name="id" type="java.lang.String" />
+					</params>
+					<hql>a.id = ?</hql>
+				</condition>
+				<condition id="nodePath" describe="Xml节点">
+					<params type="param">
+						<param name="nodePath" type="java.lang.String" />
+					</params>
+					<hql>a.nodePath like ?</hql>
+				</condition>
+				<condition id="nodeValue" describe="Xml节点值">
+					<params type="param">
+						<param name="nodeValue" type="java.lang.String" />
+					</params>
+					<hql>a.node like ?</hql>
+				</condition>
+				<condition id="updateTime" describe="修改时间">
+						<params type="param">
+							<param name="updateTime" type="java.util.Date" />
+						</params>
+						<hql>a.updateTime like ?</hql>
+				</condition>
+				<condition id="nodeCode" describe="节点编码">
+						<params type="param">
+							<param name="nodeCode" type="java.lang.String" />
+						</params>
+						<hql>a.nodeCode like ?</hql>
+				</condition>
+				
+				<condition id="xmlId" describe="xmlId">
+					<params type="param">
+						<param name="xmlId" type="java.lang.String"/>
+					</params>
+					<hql>a.resource.id = ?</hql>
+				</condition>
+				
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.XmlNode</className>
+		</query>
+		
+		<query>
+			<id>getCount</id>
+			<method>getCount</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+			</params>
+			<properties>id</properties>
+			<fields>cast(count(*) as string)</fields>
+			<hql>from XmlNode a</hql>
+			<conditions>
+				<condition id="parentId" describe="parentId">
+					<params type="param">
+						<param name="parentId" type="java.lang.String"/>
+					</params>
+					<hql>a.parent.id = ?</hql>
+				</condition>
+				
+				<condition id="nodeCode" describe="节点编码">
+						<params type="param">
+							<param name="nodeCode" type="java.lang.String" />
+						</params>
+						<hql>a.nodeCode like ?</hql>
+				</condition>
+				
+				<condition id="xmlId" describe="xmlId">
+					<params type="param">
+						<param name="xmlId" type="java.lang.String"/>
+					</params>
+					<hql>a.resource.id = ?</hql>
+				</condition>
+				
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.XmlNode</className>
+		</query>
+		
+		<query>
+			<id>getList</id>
+			<method>getList</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+				<param name="sort" type="java.lang.String"></param>
+			</params>
+			<properties>id,nodePath,nodeValue,updateTime,nodeCode,nodeName,count</properties>
+			<fields>a.id, a.nodePath, a.nodeValue, a.updateTime,a.nodeCode,a.nodeName,(select cast(count(b.id) as int) from XmlNode b where b.parent.id = a.id)</fields>
+			<hql>from XmlNode a</hql>
+			<conditions>
+				<condition id="id" describe="Id">
+					<params type="param">
+						<param name="id" type="java.lang.String" />
+					</params>
+					<hql>a.id = ?</hql>
+				</condition>
+			
+				<condition id="parentId" describe="parentId">
+					<params type="param">
+						<param name="parentId" type="java.lang.String"/>
+					</params>
+					<hql>(case when a.parent.id is null then '0' else a.parent.id end) = ?</hql>
+				</condition>
+				
+				<condition id="resourceid" describe="resourceid">
+					<params type="param">
+						<param name="resourceid" type="java.lang.String"/>
+					</params>
+					<hql>a.resource.id = ?</hql>
+				</condition>
+				
+				<condition id="nodeCode" describe="nodeCode">
+					<params type="param">
+						<param name="nodeCode" type="java.lang.String"/>
+					</params>
+					<hql>a.nodeCode like ?</hql>
+				</condition>
+				
+				<condition id="xmlId" describe="xmlId">
+					<params type="param">
+						<param name="xmlId" type="java.lang.String"/>
+					</params>
+					<hql>a.resource.id = ?</hql>
+				</condition>
+				
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.XmlNode</className>
+		</query>
+	</dao>
+</web-query>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+       
+     <!-- ftp配置-->
+    <bean id="ftpConfigService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.FtpConfigServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    <!-- ftp文件夹-->
+    <bean id="ftpFolderService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.FtpFolderServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    
+    <!-- OCR文件-->
+    <bean id="ocrFileService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.OcrFileServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    
+    <bean id="pdfService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.PDFServiceImpl"/>
+        </property>
+    </bean>
+    
+     <!-- 图书分类-->
+    <bean id="subjectService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.SubjectServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    <!-- 资源列表-->
+    <bean id="resourceService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.ResourceServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    
+    <!-- 节点列表-->
+    <bean id="xmlNodeService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.XmlNodeServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    
+    <!--用户模板-->
+    <bean id="templateService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.TemplateServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    
+    <!--用户模板节点-->
+    <bean id="templateNodeService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.TemplateNodeServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    
+    <!--模板映射节点-->
+    <bean id="templateMappingService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.TemplateMappingServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    
+    <!--线程节点-->
+    <bean id="threadService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.ThreadServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    
+     <!--文件转换-->
+    <bean id="convertResourceService" parent="baseTxProxy">
+        <property name="target">
+            <bean class="cn.digitalpublishing.service.impl.ConvertResourceServiceImpl" parent="baseService"/>
+        </property>
+    </bean>
+    
+    
+</beans>

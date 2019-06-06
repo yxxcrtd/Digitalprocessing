@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-query>
+	<dao id="cn.digitalpublishing.dao.FtpConfigDao">
+		<query>
+			<id>getPagingList</id>
+			<method>getPagingList</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+				<param name="sort" type="java.lang.String"></param>
+			</params>
+			<properties>id,username,password,port,ident,ftpName,ip</properties>
+			<fields>a.id,a.username,a.password,a.port,a.ident,a.ftpName,a.ip</fields>
+			<hql>from FtpConfig a</hql>
+			<conditions>
+				<condition id="ident" describe="Ftp标识">
+					<params type="param">
+						<param name="ident" type="java.lang.String" />
+					</params>
+					<hql>a.ident = ?</hql>
+				</condition>
+				<condition id="ftpName" describe="名称">
+					<params type="param">
+						<param name="ftpName" type="java.lang.String" />
+					</params>
+					<hql>a.ftpName = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.FtpConfig</className>
+		</query>
+		
+		<query>
+			<id>getCount</id>
+			<method>getCount</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+			</params>
+			<properties>id</properties>
+			<fields>cast(count(*) as string)</fields>
+			<hql>from FtpConfig a</hql>
+			<conditions>
+				<condition id="ident" describe="Ftp标识">
+					<params type="param">
+						<param name="ident" type="java.lang.String" />
+					</params>
+					<hql>a.ident = ?</hql>
+				</condition>
+				<condition id="ftpName" describe="名称">
+					<params type="param">
+						<param name="ftpName" type="java.lang.String" />
+					</params>
+					<hql>a.ftpName = ?</hql>
+				</condition>
+				<condition id="ftpName" describe="名称">
+					<params type="param">
+						<param name="ftpName" type="java.lang.String" />
+					</params>
+					<hql>a.ftpName = ?</hql>
+				</condition>
+				<condition id="folderId" describe="名称">
+					<params type="param">
+						<param name="ftpName" type="java.lang.String" />
+					</params>
+					<hql>a.ftpName = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.FtpConfig</className>
+		</query>
+	</dao>
+</web-query>

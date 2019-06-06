@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="book" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="400,27,48,48" name="start1">
+       <transition to="分社长意见"/>
+   </start>
+    <end name="end"/>
+    <task g="384,246,92,52" name="分社长意见">
+      <transition to="exclusive4" name="同意"/>
+        <transition to="分社长意见" name="修改"/>
+    </task>
+   <task g="390,381,92,52" name="中法图意见">
+      <transition to="社领导意见"/>
+       <transition to="分社长意见"/>
+   </task>
+   <task g="397,455,92,52" name="社领导意见">
+      <transition to="选题论证会"/>
+      <transition g="279,576:" to="获得项目编号"/>
+       <transition to="分社长意见"/>
+   </task>
+   <task g="397,578,92,52" name="选题论证会">
+      <transition to="获得项目编号"/>
+   </task>
+   <task g="404,655,92,52" name="获得项目编号">
+      <transition to="exclusive1"/>
+   </task>
+   <task g="388,756,92,52" name="创建合同">
+      <transition to="合同签章登记"/>
+   </task>
+   <task g="391,838,92,52" name="合同签章登记">
+      <transition to="来稿粗审"/>
+   </task>
+   <task g="386,918,92,52" name="来稿粗审">
+      <transition to="一审"/>
+   </task>
+   <task g="388,1007,92,52" name="一审">
+       <transition to="二审"/>
+       <transition to="来稿粗审"/>
+   </task>
+    <task g="399,1165,92,52" name="二审">
+      <transition to="三审"/>
+        <transition to="来稿粗审"/>
+    </task>
+   <task g="416,1241,92,52" name="三审">
+      <transition to="是否有补贴款"/>
+       <transition to="来稿粗审"/>
+   </task>
+   <task g="385,1316,92,52" name="是否有补贴款">
+      <transition to="fork1"/>
+   </task>
+   <task g="610,1522,92,52" name="申领书号">
+      <transition to="申报CIP"/>
+   </task>
+   <task g="625,1636,92,52" name="申报CIP">
+      <transition to="join1"/>
+   </task>
+   <decision g="510,707,48,48" name="exclusive1">
+      <transition to="创建合同"/>
+      <transition g="632,732;636,944:" to="来稿粗审"/>
+   </decision>
+   <task g="287,1512,92,52" name="安排装帧">
+      <transition to="形成设计样稿"/>
+   </task>
+   <task g="151,1514,92,52" name="安排排版">
+      <transition g="-79,-22" name="是否排校一体" to="exclusive3"/>
+   </task>
+   <fork g="400,1413,48,48" name="fork1">
+      <transition to="安排装帧"/>
+      <transition to="安排排版"/>
+      <transition to="申领书号"/>
+   </fork>
+   <task g="288,1638,92,52" name="形成设计样稿">
+      <transition to="审核装帧设计"/>
+   </task>
+   <task g="290,1753,92,52" name="审核装帧设计">
+      <transition g="485,1775;492,1661:-62,-66" name="不通过" to="形成设计样稿"/>
+      <transition g="-26,-11" name="通过" to="复查设计"/>
+   </task>
+   <task g="293,1862,92,52" name="复查设计">
+      <transition g="481,1872;488,1728:-93,-22" name="不通过" to="形成设计样稿"/>
+      <transition g="-47,-6" name="是否三审" to="exclusive2"/>
+   </task>
+   <decision g="313,1987,48,48" name="exclusive2">
+      <transition g="-17,-8" name="是" to="三审装帧设计"/>
+   </decision>
+   <task g="291,2099,92,52" name="三审装帧设计">
+      <transition g="500,1900:-39,19" name="不通过" to="形成设计样稿"/>
+      <transition to="join1"/>
+   </task>
+   <task g="294,2805,92,52" name="审核并出片">
+      <transition to="填写付印单"/>
+   </task>
+   <decision g="167,1641,48,48" name="exclusive3">
+      <transition g="-22,-14" name="否" to="形成清样"/>
+   </decision>
+   <task g="140,1757,92,52" name="形成清样">
+      <transition to="校对"/>
+   </task>
+   <task g="130,1903,92,52" name="校对">
+      <transition to="提交付型样"/>
+   </task>
+   <task g="132,2075,92,52" name="提交付型样">
+      <transition to="审核付型样"/>
+   </task>
+   <task g="132,2215,92,52" name="审核付型样">
+      <transition g="-33,-15" name="通过" to="复查付型样"/>
+      <transition g="90,2244;83,2106:-46,-18" name="不通过" to="提交付型样"/>
+   </task>
+   <task g="136,2324,92,52" name="复查付型样">
+      <transition g="-30,-14" name="通过" to="总编室抽查"/>
+      <transition g="244,2362;249,2122:-37,-30" name="不通过" to="提交付型样"/>
+   </task>
+   <task g="143,2461,92,52" name="总编室抽查">
+      <transition g="-22,-4" name="通过" to="批准最终付型样"/>
+      <transition g="-16,-19" name="不通过" to="修改付型样"/>
+   </task>
+   <task g="139,2604,92,52" name="批准最终付型样">
+      <transition to="join1"/>
+   </task>
+   <task g="18,2455,92,52" name="修改付型样">
+      <transition g="-25,-6" name="通过" to="复查付型样修改"/>
+   </task>
+   <task g="18,2540,92,52" name="复查付型样修改">
+      <transition to="批准最终付型样"/>
+   </task>
+   <task g="292,2942,92,52" name="填写付印单">
+      <transition to="审核付印单"/>
+   </task>
+   <task g="293,3072,92,52" name="审核付印单">
+      <transition g="453,3094;459,2968:-43,-51" name="不通过" to="填写付印单"/>
+      <transition g="-28,-16" name="通过" to="终审付印单"/>
+   </task>
+   <task g="299,3183,92,52" name="终审付印单">
+      <transition g="196,3209;198,2969:-81,-22" name="不通过" to="填写付印单"/>
+      <transition g="-29,-19" name="通过" to="签收付印单委托印制"/>
+   </task>
+   <task g="285,3312,132,52" name="签收付印单委托印制">
+      <transition to="制作样书"/>
+   </task>
+   <fork g="327,3479,48,48" name="fork3">
+      <transition to="检查样书印装"/>
+      <transition to="检查内容及印装"/>
+   </fork>
+   <join g="326,2611,48,48" name="join1">
+      <transition to="审核并出片"/>
+   </join>
+   <task g="182,3547,92,52" name="检查样书印装">
+      <transition g="225,3425:-44,29" name="不合格" to="制作样书"/>
+      <transition to="join2"/>
+   </task>
+   <task g="419,3542,117,52" name="检查内容及印装">
+      <transition g="-22,-23" name="不合格" to="修改错误"/>
+   </task>
+   <task g="303,3403,92,52" name="制作样书">
+      <transition to="fork3"/>
+   </task>
+   <task g="595,3540,92,52" name="修改错误">
+      <transition to="复合样书有误更正处"/>
+   </task>
+   <task g="596,3642,127,52" name="复合样书有误更正处">
+      <transition to="join2"/>
+   </task>
+   <join g="343,3642,48,48" name="join2">
+      <transition to="审查并确认样书合格"/>
+   </join>
+   <task g="299,3760,162,52" name="审查并确认样书合格">
+      <transition to="大批量装订"/>
+   </task>
+   <task g="320,3853,92,52" name="大批量装订">
+       <transition to="end"/>
+   </task>
+   <decision g="407,311,48,48" name="exclusive4">
+      <transition to="中法图意见"/>
+      <transition g="687,512:" to="获得项目编号"/>
+   </decision>
+</process>

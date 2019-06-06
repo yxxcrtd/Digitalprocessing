@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.digitalpublishing.po.FtpFolder" table="T_FTPFOLDER">
+		<id name="id" type="java.lang.String">
+			<column name="id" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="folderName" type="java.lang.String">
+			<column name="folderName" length="128">
+				<comment>文件夹名称</comment>
+			</column>
+		</property>
+		<property name="url" type="java.lang.String">
+			<column name="url" length="128">
+				<comment>配置路径</comment>
+			</column>
+		</property>
+		<property name="depict" type="java.lang.String">
+			<column name="depict" length="128">
+				<comment>文件夹描述</comment>
+			</column>
+		</property>
+		<many-to-one name="ftpConfig" class="cn.digitalpublishing.po.FtpConfig" lazy="false">
+			<column name="ftpconfigid"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

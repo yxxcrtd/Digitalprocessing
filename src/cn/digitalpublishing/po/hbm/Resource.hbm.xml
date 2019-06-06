@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.digitalpublishing.po.Resource" table="T_RESOURCE">
+		<id name="id" type="java.lang.String">
+			<column name="id" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="resourceName" type="java.lang.String">
+			<column name="resourceName" length="128">
+				<comment>资源名称</comment>
+			</column>
+		</property>
+		<property name="creatDate" type="java.util.Date">
+			<column name="creatDate" length="128">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="deleteMark" type="java.lang.String">
+			<column name="deleteMark" length="32">
+				<comment>逻辑删除标示</comment>
+			</column>
+		</property>
+		
+        <property name="filePath" type="java.lang.String">
+            <column name="filePath" length="256">
+            	<comment>文件路径</comment>
+            </column>
+        </property>
+        
+        <property name="status" type="java.lang.Integer">
+            <column name="status">
+            	<comment>状态</comment>
+            </column>
+        </property>
+        
+        <property name="flag" type="java.lang.Integer">
+            <column name="flag">
+            	<comment>读取元文件标识</comment>
+            </column>
+        </property>
+        
+        <property name="ftpFileDir" type="java.lang.String">
+            <column name="ftpFileDir" length="256">
+            	<comment></comment>
+            </column>
+        </property>
+        
+        <property name="ftpcode" type="java.lang.String">
+            <column name="ftpcode" length="256"/>
+        </property>
+        
+        
+        <property name="ip" type="java.lang.String">
+            <column name="ip" length="128">
+            	<comment>ip</comment>
+            </column>
+        </property>
+        
+        <property name="port" type="java.lang.Integer">
+            <column name="port" length="128">
+            <comment>FTP 端口号</comment>
+            </column>
+        </property>
+        
+        <property name="username" type="java.lang.String">
+            <column name="username" length="128">
+            <comment>FTP 用户名</comment>
+            </column>
+        </property>
+        
+        <property name="password" type="java.lang.String">
+            <column name="password" length="128">
+	            <comment>FTP 密码</comment>
+            </column>
+        </property>
+        
+        <property name="bookName" type="java.lang.String">
+            <column name="bookName" length="128">
+	            <comment>源书名</comment>
+            </column>
+        </property>
+        
+        <property name="bookCover" type="java.lang.String">
+            <column name="bookCover" length="128">
+	            <comment>源书封面</comment>
+            </column>
+        </property>
+        <property name="bookImage" type="java.lang.String">
+            <column name="bookImage" length="128">
+	            <comment>源书插图</comment>
+            </column>
+        </property>
+
+		<property name="keyWord" type="java.lang.String">
+            <column name="keyWord" length="128">
+	            <comment>关键字</comment>
+            </column>
+        </property>
+		<property name="resouceContent" type="text">
+			<column name="resouceContent" length="65534">
+				<comment>元文件内容</comment>
+			</column>
+		</property>
+		<set name="node" inverse="true" cascade="delete" order-by=" nodeCode asc">
+			<key column="xmlId"></key>
+			<one-to-many class="cn.digitalpublishing.po.XmlNode" />
+		</set>
+	</class>
+</hibernate-mapping>

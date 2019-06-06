@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="daoFacade" class="cn.digitalpublishing.facade.DaoFacade">
+		<!--FTP配置 -->
+		<property name="ftpConfigDao">
+			<bean class="cn.digitalpublishing.dao.FtpConfigDao" parent="commonDao" />
+		</property>
+		<!--FTP文件夹 -->
+		<property name="ftpFolderDao">
+			<bean class="cn.digitalpublishing.dao.FtpFolderDao" parent="commonDao" />
+		</property>
+		<!--OCR文件 -->
+		<property name="ocrFilesDao">
+			<bean class="cn.digitalpublishing.dao.OcrFilesDao" parent="commonDao" />
+		</property>
+		<!--资源列表 -->
+		<property name="resourceDao">
+			<bean class="cn.digitalpublishing.dao.ResourceDao" parent="commonDao" />
+		</property>
+	
+		<!--图书分类 -->
+		<property name="subjectDao">
+			<bean class="cn.digitalpublishing.dao.SubjectDao" parent="commonDao" />
+		</property>
+		
+		<!--图书分类 -->
+		<property name="bSubjectDao">
+			<bean class="cn.digitalpublishing.dao.BSubjectDao" parent="commonDao" />
+		</property>
+		
+		<!--xml节点列表 -->
+		<property name="XmlNodeDao">
+			<bean class="cn.digitalpublishing.dao.XmlNodeDao" parent="commonDao" />
+		</property>
+		
+		<!--模板 -->
+		<property name="templateDao">
+			<bean class="cn.digitalpublishing.dao.TemplateDao" parent="commonDao" />
+		</property>
+		
+		<!--模板节点 -->
+		<property name="templateNodeDao">
+			<bean class="cn.digitalpublishing.dao.TemplateNodeDao" parent="commonDao" />
+		</property>
+		
+		<!--模板节点映射 -->
+		<property name="templateMappingDao">
+			<bean class="cn.digitalpublishing.dao.TemplateMappingDao" parent="commonDao" />
+		</property>
+		
+		<!--文件转换 -->
+		<property name="convertResourceDao">
+			<bean class="cn.digitalpublishing.dao.ConvertResourceDao" parent="commonDao" />
+		</property>
+		
+		<!--文件转换 -->
+		<property name="subRelationDao">
+			<bean class="cn.digitalpublishing.dao.BSubRelationDao" parent="commonDao" />
+		</property>
+	</bean>
+</beans>

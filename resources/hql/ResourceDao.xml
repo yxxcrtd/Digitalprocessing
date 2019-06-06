@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-query>
+	<dao id="cn.digitalpublishing.dao.ResourceDao">
+		<query>
+			<id>getPagingList</id>
+			<method>getPagingList</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+				<param name="sort" type="java.lang.String"></param>
+			</params>
+			<properties>id,resourceName,creatDate,deleteMark,keyWord,filePath,ftpcode,status,bookName</properties>
+			<fields>a.id,a.resourceName,a.creatDate,a.deleteMark,a.keyWord,a.filePath,a.ftpcode,a.status,a.bookName</fields>
+			<hql>from Resource a</hql>
+			<conditions>
+				<condition id="id" describe="Id">
+					<params type="param">
+						<param name="id" type="java.lang.String" />
+					</params>
+					<hql>a.id = ?</hql>
+				</condition>
+				<condition id="resourceName" describe="资源名称">
+					<params type="param">
+						<param name="resourceName" type="java.lang.String" />
+					</params>
+					<hql>a.resourceName like ?</hql>
+				</condition>
+				<condition id="status" describe="状态">
+					<params type="param">
+						<param name="status" type="java.lang.Integer" />
+					</params>
+					<hql>a.status = ?</hql>
+				</condition>
+				<condition id="keyWord" describe="关键字">
+					<params type="param">
+						<param name="keyWord" type="java.lang.String" />
+					</params>
+					<hql>a.keyWord like ?</hql>
+				</condition>
+				
+				<condition id="creatDate" describe="创建时间">
+					<params type="param">
+						<param name="creatDate" type="java.lang.String" />
+					</params>
+					<hql>a.creatDate like ?</hql>
+				</condition>
+				<condition id="creatDateStr" describe="创建时间Str">
+					<params type="param">
+						<param name="creatDateStr" type="java.lang.String" />
+					</params>
+					<hql>a.creatDate like ?</hql>
+				</condition>
+				<condition id="deleteMark" describe="逻辑删除标示">
+						<params type="param">
+							<param name="deleteMark" type="java.lang.String" />
+						</params>
+						<hql>a.deleteMark = ?</hql>
+				</condition>
+				<condition id="filePath" describe="文件路径">
+						<params type="param">
+							<param name="filePath" type="java.lang.String" />
+						</params>
+						<hql>a.filePath = ?</hql>
+				</condition>
+				<condition id="ftpcode" describe="ftp标识">
+						<params type="param">
+							<param name="ftpcode" type="java.lang.String" />
+						</params>
+						<hql>a.ftpcode = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.Resource</className>
+		</query>
+		
+		<query>
+			<id>getCount</id>
+			<method>getCount</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+			</params>
+			<properties>id</properties>
+			<fields>cast(count(*) as string)</fields>
+			<hql>from Resource a</hql>
+			<conditions>
+				<condition id="resourceName" describe="资源名称">
+					<params type="param">
+						<param name="resourceName" type="java.lang.String" />
+					</params>
+					<hql>a.resourceName like ?</hql>
+				</condition>
+				
+				<condition id="keyWord" describe="关键字">
+					<params type="param">
+						<param name="keyWord" type="java.lang.String" />
+					</params>
+					<hql>a.keyWord like ?</hql>
+				</condition>
+				
+				<condition id="status" describe="状态">
+					<params type="param">
+						<param name="status" type="java.lang.Integer" />
+					</params>
+					<hql>a.status = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.Resource</className>
+		</query>
+		<query>
+			<id>getList</id>
+			<method>getList</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+				<param name="sort" type="java.lang.String"></param>
+			</params>
+			<properties>id,resourceName,creatDate,deleteMark,keyWord,filePath,ftpcode,status,bookImage,bookCover,bookName,keyWord,username,port,ip,password,ftpFileDir</properties>
+			<fields>a.id, a.resourceName, a.creatDate, a.deleteMark,a.keyWord,a.filePath,a.ftpcode,a.status,a.bookImage,a.bookCover,a.bookName,a.keyWord,a.username,a.port,a.ip,a.password,a.ftpFileDir</fields>
+			<hql>from Resource a</hql>
+			<conditions>
+				<condition id="id" describe="Id">
+					<params type="param">
+						<param name="id" type="java.lang.String" />
+					</params>
+					<hql>a.id = ?</hql>
+				</condition>
+				<condition id="resourceName" describe="资源名称">
+					<params type="param">
+						<param name="resourceName" type="java.lang.String" />
+					</params>
+					<hql>a.resourceName like ?</hql>
+				</condition>
+				
+				<condition id="keyWord" describe="关键字">
+					<params type="param">
+						<param name="keyWord" type="java.lang.String" />
+					</params>
+					<hql>a.keyWord like ?</hql>
+				</condition>
+				
+				<condition id="creatDate" describe="创建时间">
+					<params type="param">
+						<param name="creatDate" type="java.lang.String" />
+					</params>
+					<hql>a.creatDate like ?</hql>
+				</condition>
+				<condition id="deleteMark" describe="逻辑删除标示">
+						<params type="param">
+							<param name="deleteMark" type="java.lang.String" />
+						</params>
+						<hql>a.deleteMark = ?</hql>
+				</condition>
+				<condition id="filePath" describe="文件路径">
+						<params type="param">
+							<param name="filePath" type="java.lang.String" />
+						</params>
+						<hql>a.filePath = ?</hql>
+				</condition>
+				<condition id="ftpcode" describe="ftp标识">
+						<params type="param">
+							<param name="ftpcode" type="java.lang.String" />
+						</params>
+						<hql>a.ftpcode = ?</hql>
+				</condition>
+				<condition id="status" describe="状态">
+					<params type="param">
+						<param name="status" type="java.lang.Integer" />
+					</params>
+					<hql>a.status = ?</hql>
+				</condition>
+				<condition id="ftpFileDir" describe="ftp文件夹目录">
+						<params type="param">
+							<param name="ftpFileDir" type="java.lang.String" />
+						</params>
+						<hql>a.ftpFileDir = ?</hql>
+				</condition>
+				<condition id="password" describe="password">
+						<params type="param">
+							<param name="password" type="java.lang.String" />
+						</params>
+						<hql>a.password = ?</hql>
+				</condition>
+				<condition id="ip" describe="ip">
+						<params type="param">
+							<param name="ip" type="java.lang.String" />
+						</params>
+						<hql>a.ip = ?</hql>
+				</condition>
+				<condition id="port" describe="port">
+						<params type="param">
+							<param name="port" type="java.lang.Integer" />
+						</params>
+						<hql>a.port = ?</hql>
+				</condition>
+				<condition id="bookImage" describe="源书插图">
+						<params type="param">
+							<param name="bookImage" type="java.lang.String" />
+						</params>
+						<hql>a.bookImage = ?</hql>
+				</condition>
+				<condition id="username" describe="username">
+						<params type="param">
+							<param name="username" type="java.lang.String" />
+						</params>
+						<hql>a.username = ?</hql>
+				</condition>
+				<condition id="keyWord" describe="关键字">
+						<params type="param">
+							<param name="keyWord" type="java.lang.String" />
+						</params>
+						<hql>a.keyWord = ?</hql>
+				</condition>
+				<condition id="bookName" describe="源书名">
+						<params type="param">
+							<param name="bookName" type="java.lang.String" />
+						</params>
+						<hql>a.bookName = ?</hql>
+				</condition>
+				<condition id="bookCover" describe="源书封面">
+						<params type="param">
+							<param name="bookCover" type="java.lang.String" />
+						</params>
+						<hql>a.bookCover = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.Resource</className>
+		</query>
+	</dao>
+</web-query>

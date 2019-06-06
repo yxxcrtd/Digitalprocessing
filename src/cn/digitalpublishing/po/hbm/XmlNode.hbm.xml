@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="cn.digitalpublishing.po.XmlNode" table="T_XMLNODE">
+		<id name="id" type="java.lang.String">
+			<column name="id" length="32" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="nodePath" type="java.lang.String">
+			<column name="nodePath" length="128">
+				<comment>Xml节点</comment>
+			</column>
+		</property>
+		<property name="nodeName" type="java.lang.String">
+			<column name="nodeName" length="128">
+				<comment>Xml全路径</comment>
+			</column>
+		</property>
+		<property name="nodeValue" type="text">
+			<column name="nodeValue" length="65534">
+				<comment>Xml节点值</comment>
+			</column>
+		</property>
+		<!--ORACLE  <property name="nodeValue" type="CLOB">
+			<column name="nodeValue" length="65534">
+				<comment>Xml节点值</comment>
+			</column>
+		</property>-->
+		<property name="updateTime" type="java.util.Date">
+			<column name="updateTime" length="32">
+				<comment>修改时间</comment>
+			</column>
+		</property>
+		<property name="nodeCode" type="java.lang.String">
+			<column name="nodeCode" length="128">
+				<comment>节点编码</comment>
+			</column>
+		</property>
+
+		<property name="nodeKey" type="java.lang.String">
+			<column name="nodeKey" length="128">
+				<comment>节点标注</comment>
+			</column>
+		</property>
+
+		<many-to-one name="parent" class="cn.digitalpublishing.po.XmlNode"
+			fetch="join" lazy="false">
+			<column name="parentId"></column>
+		</many-to-one>
+
+		<set name="children" lazy="false">
+			<key>
+				<column name="parentId"></column>
+			</key>
+			<one-to-many class="cn.digitalpublishing.po.XmlNode" />
+		</set>
+
+		<many-to-one name="resource" class="cn.digitalpublishing.po.Resource"
+			column="xmlId">
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

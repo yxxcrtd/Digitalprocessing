@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-query>
+	<dao id="cn.digitalpublishing.dao.TemplateNodeDao">
+		<query>
+			<id>getPagingList</id>
+			<method>getPagingList</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+				<param name="sort" type="java.lang.String"></param>
+			</params>
+			<properties>id,nodePath,nodeName,nodeCode,Description</properties>
+			<fields>a.id,a.nodePath,a.nodeName,a.nodeCode,a.Description</fields>
+			<hql>from TemplateNode a </hql>
+			<conditions>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.TemplateNode</className>
+		</query>
+		
+		<query>
+			<id>getCount</id>
+			<method>getCount</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+			</params>
+			<properties>id</properties>
+			<fields>cast(count(*) as string)</fields>
+			<hql>from TemplateNode a</hql>
+			<conditions>
+				<condition id="templateid" describe="templateid">
+					<params type="param">
+						<param name="templateid" type="java.lang.String" />
+					</params>
+					<hql>a.template.id = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.TemplateNode</className>
+		</query>
+		
+		<query>
+			<id>getList</id>
+			<method>getList</method>
+			<params>
+				<param name="condition" type="java.util.Map"></param>
+				<param name="sort" type="java.lang.String"></param>
+			</params>
+			<properties>id,nodePath,nodeName,nodeCode,Description</properties>
+			<fields>a.id,a.nodePath,a.nodeName,a.nodeCode,a.Description</fields>
+			<hql>from TemplateNode a</hql>
+			<conditions>
+				<condition id="templateid" describe="templateid">
+					<params type="param">
+						<param name="templateid" type="java.lang.String" />
+					</params>
+					<hql>a.template.id = ?</hql>
+				</condition>
+			</conditions>
+			<group></group>
+			<order></order>
+			<className>cn.digitalpublishing.po.TemplateNode</className>
+		</query>
+	</dao>
+</web-query>

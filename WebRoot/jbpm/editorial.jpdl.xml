@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="editorial" xmlns="http://jbpm.org/4.4/jpdl">
+	<start g="341,35,48,48" name="开始">
+		<transition to="申请立项"/>
+	</start>
+	<task assignee="#{user0}" form="/pages/project/form/edit" g="323,126,92,52" name="申请立项">
+      <transition to="foreach1"/>
+	</task>
+	<task candidate-users="#{join1}" form="/pages/project/form/edit?taskFlag=1" g="328,243,92,52" name="中法图审批">
+      <transition to="join1"/>
+	</task>
+	<task candidate-users="#{user2}" form="/pages/project/form/edit?taskFlag=2" g="332,368,92,52" name="分社长审批">
+		<transition g="-52,-20" name="通过" to="分管领导审批"/>
+		<transition g="600,386;586,157:-39,28" name="不通过" to="申请立项"/>
+	</task>
+	<task candidate-users="#{user3}" form="/pages/project/form/edit?taskFlag=3" g="337,495,92,52" name="分管领导审批">
+		<transition g="667,524;638,159:-26,45" name="不通过" to="申请立项"/>
+		<transition g="-5,-20" name="通过" to="合同补贴子流程"/>
+	</task>
+	<task candidate-users="#{user4}" form="/pages/project/form/edit?taskFlag=subsidy" g="342,764,92,52" name="领取补贴">
+		<transition to="填发稿单"/>
+	</task>
+	<task candidate-users="#{user5}" form="/pages/topic/form/edit" g="343,907,92,52" name="填发稿单">
+		<transition to="一审"/>
+	</task>
+	<task candidate-users="#{user6}" form="/pages/topic/form/edit" g="347,1049,92,52" name="一审">
+		<transition to="二审"/>
+	</task>
+	<task candidate-users="#{user7}" form="/pages/topic/form/edit" g="351,1222,92,52" name="二审">
+		<transition g="-52,-20" name="通过" to="三审"/>
+		<transition g="574,1258;580,1080:-45,-20" name="不通过" to="一审"/>
+	</task>
+	<task candidate-users="#{user8}" form="/pages/topic/form/edit?approved=1" g="355,1379,92,52" name="三审">
+		<transition g="201,1413;196,1069:-45,-20" name="不通过" to="一审"/>
+		<transition g="-45,-20" name="通过" to="终审"/>
+	</task>
+	<task candidate-users="#{user9}" form="/pages/topic/form/edit" g="359,1570,92,52" name="终审">
+		<transition g="626,1598;637,1083:-45,-20" name="不通过" to="一审"/>
+		<transition g="-45,-20" name="通过" to="结束"/>
+	</task>
+	<end g="397,1747,48,48" name="结束"/>
+	<sub-process g="342,636,92,52" name="合同补贴子流程" sub-process-key="editorial_child">
+		<parameter-in subvar="user0" var="user0"/>
+		<parameter-in subvar="id" var="id"/>
+		<transition to="领取补贴"/>
+	</sub-process>
+   <foreach g="214,201,48,48" in="#{user1}" name="foreach1" var="join1">
+      <transition to="中法图审批"/>
+   </foreach>
+   <join g="204,309,48,48" multiplicity="#{quorum}" name="join1">
+      <transition to="分社长审批"/>
+   </join>
+
+</process>
